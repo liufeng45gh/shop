@@ -1,4 +1,4 @@
-package com.lucifer.dao.hfc;
+package com.lucifer.dao;
 
 import com.lucifer.cache.AppCache;
 import com.lucifer.cache.CacheProvider;

@@ -1,6 +1,6 @@
 package com.lucifer.service;
 
-import com.lucifer.dao.hfc.MemberDao;
+import com.lucifer.dao.MemberDao;
 import com.lucifer.model.SearchParam;
 import com.lucifer.model.Member;
 import com.lucifer.utils.Md5Utils;

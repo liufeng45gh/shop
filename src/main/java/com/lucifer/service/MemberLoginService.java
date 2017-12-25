@@ -1,11 +1,10 @@
 package com.lucifer.service;
 
 
-import com.lucifer.dao.hfc.MemberDao;
+import com.lucifer.dao.MemberDao;
 import com.lucifer.exception.Oauth2CodeInvalidException;
 import com.lucifer.model.AccessToken;
 import com.lucifer.model.Member;
-import com.lucifer.service.UserService;
 import com.lucifer.utils.*;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
