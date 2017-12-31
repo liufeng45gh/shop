@@ -4,7 +4,6 @@ package com.lucifer.service;
 
 import com.lucifer.exception.Oauth2CodeInvalidException;
 import com.lucifer.exception.Oauth2LoginException;
-import com.lucifer.exception.NoAuthException;
 import com.lucifer.mapper.oauth2.UserMapper;
 import com.lucifer.model.AccessToken;
 import com.lucifer.model.User;

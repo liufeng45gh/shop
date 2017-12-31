@@ -12,4 +12,20 @@ import java.util.List;
 public interface CategoryMapper {
 
     List<Category> categoryList();
+
+    Category getCategory(String id);
+
+    int insertCategory(Category category);
+
+    int updateCategory(Category category);
+
+    Category getOneChild(String parent_id);
+
+    int delete(String id);
+
+    List<Category> refCategoryList(Category category);
+
+    List<Category> getCategoryTopList();
+
+    List<Category> getCategoryChildList(String id);
 }

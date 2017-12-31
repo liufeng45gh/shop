@@ -10,7 +10,7 @@ public class Category {
 
     private String id;
 
-    private String parent_id;
+    private String parentId;
 
     private String name;
 
@@ -26,12 +26,12 @@ public class Category {
         this.id = id;
     }
 
-    public String getParent_id() {
-        return parent_id;
+    public String getParentId() {
+        return parentId;
     }
 
-    public void setParent_id(String parent_id) {
-        this.parent_id = parent_id;
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
     public String getName() {

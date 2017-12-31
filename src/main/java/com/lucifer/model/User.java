@@ -318,9 +318,6 @@ public class User implements Serializable{
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonSerialize(using=DateTimeSerializer.class)
 	public Date getCreatedAt() {
-		if (null == createdAt) {
-			createdAt = Constant.firstOnlineDate;
-		}
 		return createdAt;
 	}
 

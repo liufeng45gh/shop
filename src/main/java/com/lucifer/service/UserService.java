@@ -1,9 +1,5 @@
 package com.lucifer.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.lucifer.dao.UserDao;
 import com.lucifer.exception.ParamException;
 import com.lucifer.mapper.oauth2.UserMapper;
 import com.lucifer.model.SearchParam;
@@ -11,16 +7,11 @@ import com.lucifer.model.User;
 import com.lucifer.utils.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Service

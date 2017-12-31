@@ -4,15 +4,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.bind.RelaxedPropertyResolver;
-import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
@@ -24,42 +21,37 @@ import javax.sql.DataSource;
  *
  */
 @Configuration
-@AutoConfigureAfter({ DataBaseHfcConfiguration.class })
+@AutoConfigureAfter({ DataBaseShopConfiguration.class })
 
-public class MyBatisShopConfiguration implements EnvironmentAware{
+public class MyBatisShopConfiguration {
 
     private  Log logger = LogFactory.getLog(this.getClass());
 
-    private RelaxedPropertyResolver propertyResolver;
 
     @Autowired
-    @Qualifier("hfcDataSource")
-    protected DataSource hfcDataSource;
+    @Qualifier("shopDataSource")
+    protected DataSource shopDataSource;
 
+    @Value("${mybatis.typeAliasesPackage}")
+    private String typeAliasesPackage;
 
+    @Value("${mybatis.mapperLocations}")
+    private String mapperLocations;
 
-    @Override
-    public void setEnvironment(Environment environment) {
-        logger.info("MyBatisShopConfiguration  setEnvironment has been called");
-        this.propertyResolver = new RelaxedPropertyResolver(environment,"mybatis.");
-    }
+    @Value("${mybatis.configLocation}")
+    private String configLocation;
+
 
     @Bean(name="shopSqlSessionFactory")
     public SqlSessionFactory shopSqlSessionFactory() {
         try {
             //logger.info("userSqlSessionFactory: "+userDataSource.getConnection().getSchema());
             SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
-            factoryBean.setDataSource(hfcDataSource);
-            factoryBean.setTypeAliasesPackage(propertyResolver
-                    .getProperty("typeAliasesPackage"));
-            factoryBean
-                    .setMapperLocations(new PathMatchingResourcePatternResolver()
-                            .getResources(propertyResolver
-                                    .getProperty("mapperLocations")));
-            factoryBean
-                    .setConfigLocation(new DefaultResourceLoader()
-                            .getResource(propertyResolver
-                                    .getProperty("configLocation")));
+            factoryBean.setDataSource(shopDataSource);
+            factoryBean.setTypeAliasesPackage(typeAliasesPackage);
+            factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(mapperLocations));
+            factoryBean.setConfigLocation(new DefaultResourceLoader().getResource(configLocation));
+
 
             SqlSessionFactory sqlSessionFactory = null;
             try {
@@ -81,17 +73,6 @@ public class MyBatisShopConfiguration implements EnvironmentAware{
             return null;
         }
     }
-
-
-
-    @Bean(name = "hfcSqlSessionTemplate")
-    public SqlSessionTemplate getHfcSqlSessionTemplate(){
-        logger.info("getHfcSqlSessionTemplate  : ");
-        SqlSessionTemplate sessionTemplate = new SqlSessionTemplate(shopSqlSessionFactory());
-        return sessionTemplate;
-    }
-
-
 
 
 }

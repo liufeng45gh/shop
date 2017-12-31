@@ -11,14 +11,13 @@ import org.springframework.context.annotation.Primary;
  */
 @Configuration
 @AutoConfigureAfter(MyBatisConfiguration.class)
-public class MyBatisMapperScannerConfig {
+public class MyBatisShopMapperScannerConfig {
 
-    @Primary
-    @Bean(name="mapperScannerConfigurer")
+    @Bean(name="shopMapperScannerConfigurer")
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
-        mapperScannerConfigurer.setBasePackage("com.lucifer.mapper.oauth2");
+        mapperScannerConfigurer.setBasePackage("com.lucifer.mapper.shop");
         mapperScannerConfigurer.setAnnotationClass(org.mybatis.spring.annotation.MapperScan.class);
         return mapperScannerConfigurer;
     }

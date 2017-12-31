@@ -1,8 +1,8 @@
 package com.lucifer.service;
 
 
-import com.lucifer.dao.SmsDao;
 import com.lucifer.utils.DateUtils;
+import com.lucifer.utils.RandomUtil;
 import com.lucifer.utils.Result;
 import com.lucifer.utils.StringHelper;
 import org.apache.commons.httpclient.Header;
@@ -25,23 +25,26 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class SmsService {
 
-	
 	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
 	
-	private String key_pre="msgcode:";
+	private String key_pre="SHOP:MEG-CODE:";
 	
 	private String codeSendPhonesList = "CODE_SENDING_PHONE_LIST";
 
-	@Autowired
-	private SmsDao smsDao;
+//	@Autowired
+//	private SmsDao smsDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(SmsService.class);
+
+	private String createdCheckCode(String telephone){
+		return RandomUtil.getRamdomIntString(6);
+	}
 	
 	public Result sendCheckCode(String telephone, String remoteAddr) throws Exception{
 		
 		
-		String code = smsDao.getCheckCode(telephone);
+		String code = this.createdCheckCode(telephone);
 		logger.info("code is :"+code);		
 		stringRedisTemplate.opsForValue().set(key_pre+telephone, code);
 		stringRedisTemplate.expire(key_pre+telephone, 20, TimeUnit.MINUTES);
@@ -99,18 +102,18 @@ public class SmsService {
 	public Result checkCode(String telephone,String code) throws Exception{
 		logger.info("telephone is "+telephone);
 		logger.info("code is "+code);
-//		String cached_code = stringRedisTemplate.opsForValue().get(key_pre+telephone);
-//		if  (null == cached_code)  {
-//			return Result.fail("验证码过期");
-//		}
-//		logger.info("cached_code is : "+cached_code);
-//		if (code.equals(cached_code)) {
-//			return Result.ok();
-//		}
-		Boolean isRight = smsDao.checkCode(telephone, code);
-		if (isRight) {
+		String cached_code = stringRedisTemplate.opsForValue().get(key_pre+telephone);
+		if  (null == cached_code)  {
+			return Result.fail("验证码过期");
+		}
+		logger.info("cached_code is : "+cached_code);
+		if (code.equals(cached_code)) {
 			return Result.ok();
 		}
+//		Boolean isRight = smsDao.checkCode(telephone, code);
+//		if (isRight) {
+//			return Result.ok();
+//		}
 		return Result.fail("验证码错误");
 	}
 	

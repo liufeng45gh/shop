@@ -13,7 +13,7 @@ import java.beans.PropertyVetoException;
 
 @Configuration
 
-public class DataBaseHfcConfiguration {
+public class DataBaseShopConfiguration {
 
     private  Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -29,7 +29,7 @@ public class DataBaseHfcConfiguration {
     @Value("${jdbc-shop.password}")
     private String password;
 
-    @Bean(name = "hfcDataSource")
+    @Bean(name = "shopDataSource")
     public DataSource userDataSource() throws PropertyVetoException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         dataSource.setJdbcUrl(url);
