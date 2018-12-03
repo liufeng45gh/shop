@@ -6,6 +6,7 @@ import com.lucifer.service.CategoryService;
 import com.lucifer.utils.RandomUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +21,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/12/31.
  */
+@Controller
 public class CategoryController {
 
     @Resource
@@ -30,14 +32,14 @@ public class CategoryController {
 
     final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping(value="/cms/shop/category",method = RequestMethod.GET)
+    @RequestMapping(value="/cms/category/list",method = RequestMethod.GET)
     public String list(HttpServletRequest request){
         List<Category> categoryList = categoryMapper.categoryList();
         request.setAttribute("categoryList", categoryList);
-        return "/cms/shop/category";
+        return "/cms/category/list";
     }
 
-    @RequestMapping(value="/cms/shop/category/add",method = RequestMethod.GET)
+    @RequestMapping(value="/cms/category/add",method = RequestMethod.GET)
     public String categoryAddInput(String parentId,HttpServletRequest request){
         List<Category> categoryList = categoryMapper.categoryList();
         request.setAttribute("categoryList", categoryList);
@@ -51,18 +53,18 @@ public class CategoryController {
         }
 
         request.setAttribute("parent", parent);
-        return "/cms/shop/categoryAdd";
+        return "/cms/category/add";
     }
-    @RequestMapping(value="/cms/shop/category/add",method = RequestMethod.POST)
+    @RequestMapping(value="/cms/category/add",method = RequestMethod.POST)
     public String categoryAddSubmit(Category category){
         //log.info(city);
         //log.info(city.getId());
         category.setId(RandomUtil.getNextCityId(category.getParentId()));
         categoryMapper.insertCategory(category);
-        return "redirect:/cms/shop/category";
+        return "redirect:/cms/category/list";
     }
 
-    @RequestMapping(value="/cms/shop/category/update",method = RequestMethod.GET)
+    @RequestMapping(value="/cms/category/update",method = RequestMethod.GET)
     public String categoryUpdateInput(String id,HttpServletRequest request){
         list(request);
         Category category = categoryMapper.getCategory(id);
@@ -83,22 +85,22 @@ public class CategoryController {
         request.setAttribute("parnet", parent);
 
         request.setAttribute("category", category);
-        return "/cms/self/industryUpdate";
+        return "/cms/category/update";
     }
 
-    @RequestMapping(value="/cms/shop/category/update",method = RequestMethod.POST)
+    @RequestMapping(value="/cms/category/update",method = RequestMethod.POST)
     public String categoryUpdateSubmit(Category category){
         categoryMapper.updateCategory(category);
-        return "redirect:/cms/self/industry";
+        return "redirect:/cms/category/list";
     }
 
-    @RequestMapping(value="/cms/shop/category/delete",method = RequestMethod.POST)
+    @RequestMapping(value="/cms/category/delete",method = RequestMethod.POST)
     public String delete(String id){
         categoryMapper.delete(id);
-        return "redirect:/cms/shop/category";
+        return "redirect:/cms/category/list";
     }
 
-    @RequestMapping(value="/cms/shop/category/exist",method = RequestMethod.GET)
+    @RequestMapping(value="/cms/category/exist",method = RequestMethod.GET)
     @ResponseBody
     public Map isCityExist(String id){
         Map resultMap = new HashMap();
@@ -111,7 +113,7 @@ public class CategoryController {
         return resultMap;
     }
 
-    @RequestMapping(value="/cms/shop/category/all-data.json",method = RequestMethod.GET)
+    @RequestMapping(value="/cms/category/all-data.json",method = RequestMethod.GET)
     @ResponseBody
     public List json(){
         List<Category> categoryListList = categoryMapper.categoryList();

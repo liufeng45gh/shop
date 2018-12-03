@@ -16,9 +16,9 @@ public class MyBatisShopMapperScannerConfig {
     @Bean(name="shopMapperScannerConfigurer")
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
-        mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
+        mapperScannerConfigurer.setSqlSessionFactoryBeanName("shopSqlSessionFactory");
         mapperScannerConfigurer.setBasePackage("com.lucifer.mapper.shop");
-        mapperScannerConfigurer.setAnnotationClass(org.mybatis.spring.annotation.MapperScan.class);
+        mapperScannerConfigurer.setAnnotationClass(com.lucifer.annotation.MapperScanShop.class);
         return mapperScannerConfigurer;
     }
 }

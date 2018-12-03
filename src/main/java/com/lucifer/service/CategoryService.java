@@ -5,6 +5,7 @@ import com.lucifer.model.Category;
 import com.lucifer.utils.StringHelper;
 import com.lucifer.utils.WxPinYinHelper;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/12/31.
  */
+@Service
 public class CategoryService {
 
     @Resource

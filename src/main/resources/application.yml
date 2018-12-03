@@ -11,12 +11,12 @@ spring:
 # DATASOURCE
 jdbc:
     driverClass: com.mysql.jdbc.Driver
-    url: jdbc:mysql://test.haifuc.cn/oauth2-user?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=TRUE&zeroDateTimeBehavior
+    url: jdbc:mysql://www.haifuc.cn/oauth2-user?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=TRUE&zeroDateTimeBehavior
     username: root
     password: lucifer-HFC-20170501
 jdbc-shop:
     driverClass: com.mysql.jdbc.Driver
-    url: jdbc:mysql://test.haifuc.cn/shop?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=TRUE&zeroDateTimeBehavior
+    url: jdbc:mysql://www.haifuc.cn/shop?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&rewriteBatchedStatements=TRUE&zeroDateTimeBehavior
     username: root
     password: lucifer-HFC-20170501
 
