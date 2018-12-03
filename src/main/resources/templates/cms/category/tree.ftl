@@ -8,7 +8,7 @@
 
 				d = new dTree('d');
 
-				d.add(0,-1,'点击添加根节点','/cms/self/cityadd?parent_id=0');
+				d.add(0,-1,'点击添加根节点','/cms/category/add?parent_id=0');
 
                 <#list categoryList as category>
 				 d.add(${category.id} ,${category.parent_id },'${category.name }','/cms/self/cityUpdate?id=${category.id}');
