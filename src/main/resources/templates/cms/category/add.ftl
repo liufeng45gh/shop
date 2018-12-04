@@ -24,10 +24,7 @@
                                 <colgroup><col width="150px"></col></colgroup>
                                 <tbody>
                                 <tr><th></th><td>添加新分类</td></tr>
-                                <tr>
-                                    <th>分类id：</th>
-                                    <td><input id="category_id" type="text" class="normal" name="id"    /><label id="city_id_info">* 分类id(系统生成)</label></td>
-                                </tr>
+
                                 <#include "form_field.ftl"/>
 
                                 <tr>

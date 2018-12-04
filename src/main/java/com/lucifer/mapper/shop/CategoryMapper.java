@@ -2,6 +2,7 @@ package com.lucifer.mapper.shop;
 
 import com.lucifer.annotation.MapperScanShop;
 import com.lucifer.model.Category;
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.MapperScan;
 
 import java.util.List;
@@ -29,4 +30,6 @@ public interface CategoryMapper {
     List<Category> getCategoryTopList();
 
     List<Category> getCategoryChildList(String id);
+
+    String getMaxCategoryId(@Param(value = "parentId") String parentId);
 }

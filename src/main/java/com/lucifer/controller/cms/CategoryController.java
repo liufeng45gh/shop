@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sun.rmi.runtime.Log;
 
@@ -40,7 +41,7 @@ public class CategoryController {
     }
 
     @RequestMapping(value="/cms/category/add",method = RequestMethod.GET)
-    public String categoryAddInput(String parentId,HttpServletRequest request){
+    public String categoryAddInput(@RequestParam("parent_id") String parentId, HttpServletRequest request){
         List<Category> categoryList = categoryMapper.categoryList();
         request.setAttribute("categoryList", categoryList);
         Category parent = null;
@@ -51,15 +52,19 @@ public class CategoryController {
         }else{
             parent = categoryMapper.getCategory(parentId);
         }
-
         request.setAttribute("parent", parent);
+
+
+        //request.setAttribute("nextCategoryId", nextCategoryId);
+
         return "/cms/category/add";
     }
     @RequestMapping(value="/cms/category/add",method = RequestMethod.POST)
     public String categoryAddSubmit(Category category){
         //log.info(city);
         //log.info(city.getId());
-        category.setId(RandomUtil.getNextCityId(category.getParentId()));
+        String nextCategoryId = categoryService.getNextCategoryId(category.getParentId());
+        category.setId(nextCategoryId);
         categoryMapper.insertCategory(category);
         return "redirect:/cms/category/list";
     }

@@ -57,4 +57,24 @@ public class CategoryService {
         return resultList;
 
     }
+
+    public String getNextCategoryId(String parentId){
+        String nextCategoryId = null;
+        String maxCategoryId = categoryMapper.getMaxCategoryId(parentId);
+        if (null == maxCategoryId) {
+            if ("0".equals(parentId)) {
+                nextCategoryId = "0001";
+                return nextCategoryId;
+            }else{
+                nextCategoryId = parentId + "0001";
+                return nextCategoryId;
+            }
+        }
+        String subId = maxCategoryId.substring(maxCategoryId.length()-4,maxCategoryId.length());
+        Integer tmpId = Integer.valueOf(1 + subId);
+        tmpId = tmpId + 1;
+        String nextSubId = String.valueOf(tmpId);
+        nextCategoryId = parentId + nextSubId.substring(1);
+        return nextCategoryId;
+    }
 }
