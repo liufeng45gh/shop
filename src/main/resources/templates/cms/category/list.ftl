@@ -16,13 +16,9 @@
             <div id="admin_right">
                 <div class="content_box" style="border:none">
                     <div class="position"><span>分类</span><span>&gt;</span><span>分类列表</span></div>
-                    <div class="operating">
 
-                        <#include "tree.ftl"/>
-
-                    </div>
                     <div class="content" style="min-height: 200px;">
-
+                        <#include "tree.ftl"/>
                     </div>
 
 

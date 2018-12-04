@@ -7,6 +7,8 @@ import java.util.Date;
 public class Constant {
 
 
+	//用户 access_token
+	public static final String ADMIN_ACCESS_TOKEN = "ADMIN_ACCESS_TOKEN";
 
 	public static final String KEY_RESULT_MESSAGE = "KEY_RESULT_MESSAGE";
 

@@ -68,8 +68,8 @@ public class CategoryController {
     public String categoryUpdateInput(String id,HttpServletRequest request){
         list(request);
         Category category = categoryMapper.getCategory(id);
-        Category childIndustry = categoryMapper.getOneChild(category.getId());
-        if(null != childIndustry){
+        Category child = categoryMapper.getOneChild(category.getId());
+        if(null != child){
             category.setTerminal(false);
         }else{
             category.setTerminal(true);

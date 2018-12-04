@@ -8,3 +8,4 @@
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
 <script  type="text/javascript" src="/layer/layer.js"></script>
 <script type="text/javascript" charset="UTF-8" src="/cms/script/jquery.form-3.45.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/cms/script/header.js"></script>

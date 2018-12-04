@@ -12,3 +12,5 @@
 <script>
 $("#top_menu_category").addClass("selected");
 </script>
+<link rel="StyleSheet" href="/dtree/dtree.css" type="text/css" />
+<script type="text/javascript" src="/dtree/dtree.js"></script>
