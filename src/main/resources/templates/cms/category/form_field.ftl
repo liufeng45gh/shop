@@ -8,7 +8,7 @@
 <th>父级分类：</th>
 <td>
     <input id="parent_city" type="text" class="normal" readonly="true" value="${(parent.name)!}"  />
-    <input type="hidden" name="parent_id" value="${(parent.id)!}" />
+    <input type="hidden" name="parentId" value="${(parent.id)!}" />
 </td>
 </tr>
 

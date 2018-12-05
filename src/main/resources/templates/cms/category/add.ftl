@@ -19,7 +19,7 @@
 
                     <div class="content" style="min-height: 200px;">
                         <#include "tree.ftl"/>
-                        <form action="/cms/self/cityadd" method="post">
+                        <form action="/cms/category/add" method="post">
                             <table class="form_table " style="font-size:12px;width:auto;margin-left:30px;">
                                 <colgroup><col width="150px"></col></colgroup>
                                 <tbody>
@@ -30,7 +30,7 @@
                                 <tr>
                                     <th></th>
                                     <td>
-                                        <button class="submit" type="submit" onclick="return checkFiled();"><span>保存设置</span></button>
+                                        <button class="btn btn-primary"  onclick="return checkFiled();"><span>保存设置</span></button>
                                     </td>
                                 </tr>
                                 </tbody>

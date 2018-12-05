@@ -1,5 +1,6 @@
 package com.lucifer.service;
 
+import com.lucifer.exception.ArgumentException;
 import com.lucifer.mapper.shop.CategoryMapper;
 import com.lucifer.model.Category;
 import com.lucifer.utils.StringHelper;
@@ -58,7 +59,10 @@ public class CategoryService {
 
     }
 
-    public String getNextCategoryId(String parentId){
+    public String getNextCategoryId(String parentId) throws ArgumentException {
+        if (null == parentId) {
+            throw new ArgumentException("parentId can not be null");
+        }
         String nextCategoryId = null;
         String maxCategoryId = categoryMapper.getMaxCategoryId(parentId);
         if (null == maxCategoryId) {

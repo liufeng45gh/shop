@@ -1,5 +1,6 @@
 package com.lucifer.controller.cms;
 
+import com.lucifer.exception.ArgumentException;
 import com.lucifer.mapper.shop.CategoryMapper;
 import com.lucifer.model.Category;
 import com.lucifer.service.CategoryService;
@@ -60,7 +61,7 @@ public class CategoryController {
         return "/cms/category/add";
     }
     @RequestMapping(value="/cms/category/add",method = RequestMethod.POST)
-    public String categoryAddSubmit(Category category){
+    public String categoryAddSubmit(Category category) throws ArgumentException {
         //log.info(city);
         //log.info(city.getId());
         String nextCategoryId = categoryService.getNextCategoryId(category.getParentId());
