@@ -82,13 +82,13 @@ public class CategoryController {
         }
         Category parent=null;
         if(category.getParentId().equals("0")){
-            category=new Category();
-            category.setId("0");
-            category.setName("根节点");
+            parent=new Category();
+            parent.setId("0");
+            parent.setName("根节点");
         }else{
-            category = categoryMapper.getCategory(category.getParentId());
+            parent = categoryMapper.getCategory(category.getParentId());
         }
-        request.setAttribute("parnet", parent);
+        request.setAttribute("parent", parent);
 
         request.setAttribute("category", category);
         return "/cms/category/update";

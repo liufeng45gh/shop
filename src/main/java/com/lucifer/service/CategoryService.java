@@ -6,6 +6,8 @@ import com.lucifer.model.Category;
 import com.lucifer.utils.StringHelper;
 import com.lucifer.utils.WxPinYinHelper;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,6 +21,8 @@ import java.util.Map;
  */
 @Service
 public class CategoryService {
+
+    final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
     private CategoryMapper categoryMapper;
@@ -75,10 +79,16 @@ public class CategoryService {
             }
         }
         String subId = maxCategoryId.substring(maxCategoryId.length()-4,maxCategoryId.length());
+        logger.info("subId is : {}",subId);
         Integer tmpId = Integer.valueOf(1 + subId);
         tmpId = tmpId + 1;
         String nextSubId = String.valueOf(tmpId);
-        nextCategoryId = parentId + nextSubId.substring(1);
+        if ("0".equals(parentId)) {
+            nextCategoryId = nextSubId.substring(1);
+        }else {
+            nextCategoryId = parentId + nextSubId.substring(1);
+        }
+
         return nextCategoryId;
     }
 }

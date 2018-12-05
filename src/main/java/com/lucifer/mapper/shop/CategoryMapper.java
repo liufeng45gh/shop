@@ -21,7 +21,7 @@ public interface CategoryMapper {
 
     int updateCategory(Category category);
 
-    Category getOneChild(String parent_id);
+    Category getOneChild(@Param(value = "parentId") String parentId);
 
     int delete(String id);
 
