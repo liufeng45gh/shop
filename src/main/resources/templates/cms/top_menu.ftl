@@ -33,7 +33,7 @@
 		    <li  id="top_menu_self"><a href="/cms/self/welcome"><i class="icon-home"></i> <span> 我的地盘</span></a></li>
 		    <li  id="top_menu_user"><a href="/cms/user/list" >管理员</a></li>
 		    <li  id="top_menu_cms"><a href="/cms/category/list" >分类管理</a></li>
-            <li  id="top_menu_atlas"><a href="/cms/atlas/list" >商品管理</a></li>
+            <li  id="top_menu_goods"><a href="/cms/goods/list" >商品管理</a></li>
             <li  id="top_menu_index"><a href="/cms/index/carousel/list" >首页管理</a></li>
             <li  id="top_menu_member"><a href="/cms/member/list" >会员</a></li>
 		</ul>
