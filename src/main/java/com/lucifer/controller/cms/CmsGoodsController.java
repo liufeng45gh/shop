@@ -40,4 +40,9 @@ public class CmsGoodsController {
         return "/cms/goods/list";
     }
 
+    @RequestMapping(value="/cms/goods/add",method = RequestMethod.GET)
+    public String toAddUser(){
+        return "/cms/goods/addGoods";
+    }
+
 }
