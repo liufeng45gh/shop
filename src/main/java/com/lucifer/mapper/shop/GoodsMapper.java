@@ -9,5 +9,10 @@ import java.util.List;
 @MapperScanShop
 public interface GoodsMapper {
 
-    List<Goods> goodsList(@Param(value = "offset") Integer offset, @Param(value = "count") Integer count);
+    List<Goods> goodsCmsSearchList(@Param(value = "offset") Integer offset,
+                                   @Param(value = "count") Integer count,
+                                   @Param(value = "name") String name,
+                                   @Param(value = "categoryId") String categoryId);
+
+    Integer goodsCmsSearchCount(Goods searchParam);
 }

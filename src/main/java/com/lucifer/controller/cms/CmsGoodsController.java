@@ -2,6 +2,7 @@ package com.lucifer.controller.cms;
 
 import com.lucifer.mapper.shop.GoodsMapper;
 import com.lucifer.model.Goods;
+import com.lucifer.utils.PageUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,11 +19,24 @@ public class CmsGoodsController {
     GoodsMapper goodsMapper;
 
     @RequestMapping(value="/cms/goods/list",method = RequestMethod.GET)
-    public String list(@RequestParam(value = "page",defaultValue = "1") Integer page, HttpServletRequest request){
-        Integer count = 30;
-        Integer offset = (page - 1) * count;
-        List<Goods> goodsList = goodsMapper.goodsList(offset,count);
+    public String list(@RequestParam(value = "page",defaultValue = "1") Integer page,
+                       @RequestParam(value = "name",required = false) String name,
+                       @RequestParam (value = "categoryId",required = false) String categoryId,
+                       HttpServletRequest request,Goods searchParam){
+        Integer perPageCount = 30;
+        Integer offset = (page - 1) * perPageCount;
+        List<Goods> goodsList = goodsMapper.goodsCmsSearchList(offset,perPageCount,name,categoryId);
         request.setAttribute("goodsList",goodsList);
+
+        Integer matchRecordCount=goodsMapper.goodsCmsSearchCount(searchParam);
+        Integer totalPageCount= PageUtil.getTotalPageCount(matchRecordCount, perPageCount);
+
+        PageUtil pageUtil = new PageUtil(request);
+        String pageDiv = pageUtil.willPaginate(totalPageCount,  "pages_bar",new String []{"page","msg"});
+        request.setAttribute("pageDiv",pageDiv);
+        request.setAttribute("searchParam",searchParam);
+
+
         return "/cms/goods/list";
     }
 

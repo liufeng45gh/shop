@@ -13,8 +13,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="brand_id" property="brandId"/>
 
 	</resultMap>
-	<select id="goodsList"  resultMap="goodsMap">
-		select * from goods order by id asc limit #{offset}, #{count}
+	<select id="goodsCmsSearchList"  resultMap="goodsMap">
+		select * from goods
+		<where>
+			<if test="categoryId != null">
+				and category_id = #{categoryId}
+			</if>
+			<if test="name != null">
+				and name like '${name}%'
+			</if>
+		</where>
+		order by id asc
+		limit #{offset}, #{count}
+	</select>
+	
+	<select id="goodsCmsSearchCount" resultType="java.lang.Integer">
+		select count(*) from goods
+		<where>
+			<if test="categoryId != null">
+				and category_id = #{categoryId}
+			</if>
+
+			<if test="name != null">
+				and name like '${name}%'
+			</if>
+
+		</where>
 	</select>
 
 

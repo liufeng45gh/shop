@@ -6,6 +6,8 @@ public class Goods {
 
     private String categoryId;
 
+    private Category category;
+
     private String name;
 
     private String detail;
@@ -50,5 +52,13 @@ public class Goods {
 
     public void setBrandId(Long brandId) {
         this.brandId = brandId;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

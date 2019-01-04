@@ -4,7 +4,8 @@
     </div>
     <div class="panel-body">
         <ul class="tree tree-lines" >
-            <li  id="left_menu_welcome"><a href="/cms/goods/list" >商品管理</a> </li>
+            <li  id="left_menu_list"><a href="/cms/goods/list" >商品列表</a> </li>
+            <li  id="left_menu_add"><a href="/cms/goods/add" >添加商品</a> </li>
         </ul>
     </div>
 
