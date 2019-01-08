@@ -98,7 +98,7 @@
 <script type="text/javascript" charset="UTF-8" src="/cms/script/goods/add.js"></script>
 
 <SCRIPT type="text/javascript">
-    <!--
+   
     var setting = {
         view: {
             dblClickExpand: false
@@ -146,13 +146,20 @@
         var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
         nodes = zTree.getSelectedNodes(),
         v = "";
+        k = "";
         nodes.sort(function compare(a,b){return a.id-b.id;});
         for (var i=0, l=nodes.length; i<l; i++) {
             v += nodes[i].name + ",";
+            k += nodes[i].id + ",";
         }
         if (v.length > 0 ) v = v.substring(0, v.length-1);
-        var cityObj = $("#citySel");
+
+        var cityObj = $("#category_input");
         cityObj.attr("value", v);
+
+        if (k.length > 0 ) k = k.substring(0, k.length-1);
+        var idObj = $("#category_id");
+        idObj.attr("value", k);
     }
 
     function showMenu() {
@@ -175,7 +182,7 @@
     $(document).ready(function(){
         $.fn.zTree.init($("#treeDemo"), setting, zNodes);
     });
-    //-->
+
 </SCRIPT>
 <div id="menuContent" class="menuContent" style="display:none; position: absolute;">
     <ul id="treeDemo" class="ztree" style="margin-top:0; width:160px;"></ul>
