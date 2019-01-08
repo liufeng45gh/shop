@@ -13,5 +13,6 @@
 <script>
 $("#top_menu_goods").addClass("selected");
 </script>
-<link rel="StyleSheet" href="/dtree/dtree.css" type="text/css" />
-<script type="text/javascript" src="/dtree/dtree.js"></script>
+<link rel="stylesheet" href="/ztree/zTree_v3/css/demo.css" type="text/css"/>
+<link rel="stylesheet" href="/ztree/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css"/>
+<script type="text/javascript" src="/ztree/zTree_v3/js/jquery.ztree.core.js"></script>

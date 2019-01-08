@@ -125,4 +125,12 @@ public class CategoryController {
         List<Category> categoryListList = categoryMapper.categoryList();
         return categoryService.toComboTreeData(categoryListList);
     }
+
+
+    @RequestMapping(value="/cms/category/tree-select",method = RequestMethod.GET)
+    public String treeSelect(HttpServletRequest request){
+        List<Category> categoryList = categoryMapper.categoryList();
+        request.setAttribute("categoryList", categoryList);
+        return "/cms/category/tree-select";
+    }
 }
