@@ -98,7 +98,7 @@
 <script type="text/javascript" charset="UTF-8" src="/cms/script/goods/add.js"></script>
 
 <SCRIPT type="text/javascript">
-   
+
     var setting = {
         view: {
             dblClickExpand: false
@@ -111,6 +111,10 @@
         callback: {
             beforeClick: beforeClick,
             onClick: onClick
+        },
+        async: {
+            enable: true,
+            url:"/cms/category/list.json"
         }
     };
 
@@ -180,7 +184,7 @@
     }
 
     $(document).ready(function(){
-        $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        $.fn.zTree.init($("#treeDemo"), setting);
     });
 
 </SCRIPT>

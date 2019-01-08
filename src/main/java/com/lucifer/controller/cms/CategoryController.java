@@ -133,4 +133,11 @@ public class CategoryController {
         request.setAttribute("categoryList", categoryList);
         return "/cms/category/tree-select";
     }
+
+    @RequestMapping(value="/cms/category/list.json",method = {RequestMethod.GET,RequestMethod.POST})
+    @ResponseBody
+    public List<Category> jsonList(HttpServletRequest request){
+        List<Category> categoryList = categoryMapper.categoryList();
+        return categoryList;
+    }
 }
