@@ -105,7 +105,14 @@
         },
         data: {
             simpleData: {
-                enable: true
+                enable: true,
+                idKey: "id",
+                pIdKey: "parentId",
+                rootPId: null
+            },
+            keep: {
+                leaf: false,
+                parent: false
             }
         },
         callback: {
@@ -114,9 +121,32 @@
         },
         async: {
             enable: true,
-            url:"/cms/category/list.json"
+            url:"/cms/category/list.json",
+            dataFilter: isParentDataFilter
         }
     };
+
+    function isParentDataFilter(treeId, parentNode, responseData) {
+        if (responseData) {
+            for(var i =0; i < responseData.length; i++) {
+                 var isParent = findIsParent(responseData,responseData[i].id);
+                responseData[i].isParent = isParent;
+            }
+        }
+        return responseData;
+    };
+
+    function findIsParent(dataArray,parentId){
+        if (dataArray) {
+            for(var i =0; i < dataArray.length; i++) {
+                if(dataArray[i].parentId == parentId){
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
 
     var zNodes =[
         {id:1, pId:0, name:"北京"},
@@ -142,7 +172,7 @@
 
     function beforeClick(treeId, treeNode) {
         var check = (treeNode && !treeNode.isParent);
-        if (!check) alert("只能选择城市...");
+        if (!check) alert("只能选择终结点...");
         return check;
     }
 
@@ -152,7 +182,7 @@
         v = "";
         k = "";
         nodes.sort(function compare(a,b){return a.id-b.id;});
-        for (var i=0, l=nodes.length; i<l; i++) {
+        for (var i=0; i < nodes.length; i++) {
             v += nodes[i].name + ",";
             k += nodes[i].id + ",";
         }

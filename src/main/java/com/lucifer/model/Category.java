@@ -1,5 +1,7 @@
 package com.lucifer.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,9 +32,6 @@ public class Category {
         return parentId;
     }
 
-    public String getPId() {
-        return parentId;
-    }
 
     public void setParentId(String parentId) {
         this.parentId = parentId;
@@ -61,6 +60,8 @@ public class Category {
     public void setChildren(List<Category> children) {
         this.children = children;
     }
+
+
 
 
 }
