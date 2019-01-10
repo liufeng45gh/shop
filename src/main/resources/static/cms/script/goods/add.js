@@ -15,3 +15,6 @@ function selectNode(id,name){
     $("#category_input").val(name);
     layer.closeAll();
 }
+$(function(){
+    var ue = UE.getEditor('editor');
+});
